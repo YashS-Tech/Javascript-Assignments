@@ -2,7 +2,7 @@
 
 function mostFrequentItem(array) {
     if (array.length === 0) {
-      return null; // handle empty array
+      return null; // i have used it to handle empty array
     }
   
     let maxCount = 0;
