@@ -1,31 +1,25 @@
 // Q1:Write a function that accepts two arrays and returns the missing element from the smaller array
     
     
-function findMissing(array1,array2,l1,l2)
-{
-        for(let i=0;i<l1;i++)
-        {
-            let j=0;
-            for(j=0;j<l2;j++)
-            
-                if(array1[i]==array2[j])
-                break;
-
-                if(j==l2)
-                 console.log(array1[i]);
-        
-         }
-
-}   
+function findMissingElement(array1, array2) {
+    if (array1.length > array2.length) {
+      [array1, array2] = [array2, array1]; // I have used this to swap arrays ,so arr1 is always the smaller one
+    }
+    for (let i = 0; i < array2.length; i++) {
+      if (!array1.includes(array2[i])) {
+        return array2[i];
+      }
+    }
+    return null; // for no missing element found
+  }
     
-    let array1=[1,4,2,5,3]
-    let array2=[5,4,1,2]
-    l1=array1.length;
-    l2=array2.length;
-    findMissing(array1,array2,l1,l2);
+    let array1=[7,6,4,2]
+    let array2=[6,4,7,2,1]
+    
+    console.log(findMissingElement(array1,array2));
 
 
 /*output
-3
+3git
 */
 
