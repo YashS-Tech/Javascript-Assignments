@@ -13,11 +13,27 @@ function findMissingElement(array1, array2) {
     return null; // for no missing element found
   }
     
-    let array1=[7,6,4,2]
+  //array filter method
+  function findMissingElement(array3, array4) {
+    if (array3.length > array4.length) {
+      
+      [array3, array4] = [array4, array3];  // I have used these to swap the arrays if array3 is bigger than array4
+    }
+    
+    //I have used filter method to return the missing element in array4
+    let missingElement = array4.filter(element => !array3.includes(element))[0];
+    
+    return missingElement;
+  }
+
+  let array3 = [7,6,4,2];
+  let array4 = [6,4,7,2,1];
+    
+   let array1=[7,6,4,2]
     let array2=[6,4,7,2,1]
     
     console.log(findMissingElement(array1,array2));
-
+    console.log(findMissingElement(array3, array4));
 
 /*output
 3git
