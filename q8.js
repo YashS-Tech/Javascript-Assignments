@@ -239,33 +239,30 @@ const data=
 ]
 
 
-function flattenObject(obj) {
-  const result = {};
-  for (const key in obj) {
-    if (typeof obj[key] === 'object') {
-      const flattened = flattenObject(obj[key]);
-      for (const flatKey in flattened) {
-        result[key + '.' + flatKey] = flattened[flatKey];
+// i have used it to iterate over each object in the array
+for (let i = 0; i < data.length; i++) {
+  const obj = data[i];
+  const keys = Object.keys(obj);
+
+  // i have used it to iterate over each key-value pair in the object
+  for (let j = 0; j < keys.length; j++) {
+    const key = keys[j];
+    const value = obj[key];
+
+    // for nested object 
+    if (typeof value === 'object' && value !== null) {
+      const nestedKeys = Object.keys(value);
+      for (let k = 0; k < nestedKeys.length; k++) {
+        const nestedKey = nestedKeys[k];
+        const nestedValue = value[nestedKey];
+        obj[key + '_' + nestedKey] = nestedValue;
       }
-    } else {
-      result[key] = obj[key];
+      delete obj[key];
     }
   }
-  return result;
 }
 
-function flattenAndRemoveNestedData(obj) {
-  const flattened = flattenObject(obj);
-  for (const key in flattened) {
-    if (typeof flattened[key] === 'object') {
-      delete flattened[key];
-    }
-  }
-  return flattened;
-}
-
-const flattenedData = flattenAndRemoveNestedData(data);
-console.log(flattenedData);
+console.log(data);
 
 /*OUTPUT:
 
