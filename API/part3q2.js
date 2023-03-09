@@ -7,7 +7,7 @@ axios.get('https://jsonplaceholder.typicode.com/users')
     users.forEach((user) => {
       promises.push(axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`));
     });
-    // Wait for all promises to resolve using Promise.all()
+    
     Promise.all(promises)
       .then((responses) => {
     
