@@ -1,4 +1,40 @@
-const axios = require("axios");
+const axios = require('axios');
+
+axios.get('https://jsonplaceholder.typicode.com/users')
+  .then(response => {
+    const orgUsers = response.data.filter(user => user.website.endsWith('.org'));
+    console.log(orgUsers);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   ------------------------------------------------------
+/*const axios = require("axios");
 
 // i have used a function to filter users by website domain
 function filterUsersByDomain(users, domain) {
@@ -33,4 +69,4 @@ axios.get("https://jsonplaceholder.typicode.com/users")
   })
   .catch(error => {
     console.error(error);
-  });
+  }); */
