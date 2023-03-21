@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
   database: 'yashdb',
 });
 
-
+// connect to MySQL server
 connection.connect((error) => {
   if (error) {
     console.error('Error connecting to MySQL server: ' + error.stack);
@@ -39,10 +39,11 @@ app.get('/users', (req, res) => {
 
 // create a new user
 app.post('/users', (req, res) => {
+    console.log(req.body);
   const { name, username, email, address_street, address_suite, address_city, address_zipcode, phone } = req.body;
 
   // insert the user data into the user table
-  connection.query('INSERT INTO user (name, username, email) VALUES (?, ?, ?)', [name, username, email], (error, results, fields) => {
+  connection.query('INSERT INTO user (name, username, email) VALUES (?, ?, ?)', [name, username, email], (error, results, _fields) => {
     if (error) {
       console.error('Error inserting user data into user table: ' + error.stack);
       res.status(500).send('Error creating user');
