@@ -108,6 +108,23 @@ app.put('/users/:userId', (req, res) => {
       });
     });
   });
+
+  // endpoint to delete a user
+app.delete('/users/:id', (req, res) => {
+    const userId = req.params.id;
+  
+    // delete the user from the user_details table
+    connection.query('DELETE FROM user_details WHERE id = ?', [userId], (err, result) => {
+      if (err) throw err;
+  
+      // delete the user from the user table
+      connection.query('DELETE FROM user WHERE id = ?', [userId], (err, result) => {
+        if (err) throw err;
+  
+        res.send(`User with ID ${userId} has been deleted.`);
+      });
+    });
+  });
   
   // start the server
   app.listen(3000, () => {
