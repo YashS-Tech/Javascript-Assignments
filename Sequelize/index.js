@@ -2,6 +2,10 @@ const { Sequelize } = require('sequelize');
 const mysql2 = require('mysql2');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 const sequelize = new Sequelize('yashdb', 'root', 'root123', {
     dialect: 'mysql',
@@ -54,5 +58,25 @@ const sequelize = new Sequelize('yashdb', 'root', 'root123', {
       res.status(500).send('Server error');
     }
   });
+
+  app.post('/users', async (req, res) => {
+    try {
+      const { name, username, email, address_street, address_suite, address_city, address_zipcode, phone } = req.body;
+  
+      const user = await User.create({ name, username, email });
+      
+      const userDetails = await UserDetails.create({ id: user.id, address_street, address_suite, address_city, address_zipcode, phone });
+  
+      res.json({ message: 'User created successfully', user, userDetails });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error creating user' });
+    }
+  });
+  
   
   app.listen(3000, () => console.log('Server started on port 3000'));
+  
+ 
+  
+  
