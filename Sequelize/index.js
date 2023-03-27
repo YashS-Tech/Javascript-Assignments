@@ -104,5 +104,17 @@ const sequelize = new Sequelize('yashdb', 'root', 'root123', {
     res.status(500).json({ message: 'Error updating user' });
   }
 });
+  //Delete  a user 
+  app.delete('/users/:id', async (req, res) => {
+    const userId = req.params.id;
   
+    try {
+      await UserDetails.destroy({ where: { id: userId } });
+      await User.destroy({ where: { id: userId } });
+      res.send(`User with ID ${userId} and their details have been deleted.`);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while deleting the user.');
+    }
+  });
 app.listen(3000, () => console.log('Server started on port 3000'));
