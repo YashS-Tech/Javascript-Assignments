@@ -45,7 +45,7 @@ const sequelize = new Sequelize('yashdb', 'root', 'root123', {
   
   User.hasOne(UserDetails, { foreignKey: 'id' });
   
-  
+  //display users
   app.get('/users', async (req, res) => {
     try {
       const users = await User.findAll({
@@ -58,7 +58,7 @@ const sequelize = new Sequelize('yashdb', 'root', 'root123', {
       res.status(500).send('Server error');
     }
   });
-
+//create users
   app.post('/users', async (req, res) => {
     try {
       const { name, username, email, address_street, address_suite, address_city, address_zipcode, phone } = req.body;
@@ -75,8 +75,34 @@ const sequelize = new Sequelize('yashdb', 'root', 'root123', {
   });
   
   
-  app.listen(3000, () => console.log('Server started on port 3000'));
-  
- 
   
   
+ //update user;
+ app.put('/users/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, username, email, address_street, address_suite, address_city, address_zipcode, phone } = req.body;
+
+  try {
+    await User.update(
+      { name, username, email },
+      { where: { id } }
+    );
+
+    await UserDetails.update(
+      { address_street, address_suite, address_city, address_zipcode, phone },
+      { where: { id } }
+    );
+
+    const updatedUser = await User.findOne({
+      where: { id },
+      include: UserDetails
+    });
+
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error updating user' });
+  }
+});
+  
+app.listen(3000, () => console.log('Server started on port 3000'));
