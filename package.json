@@ -8,7 +8,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.2.0",
     "sequelize": "^6.30.0",
-    "sequelize-import": "^1.2.1"
+    "sequelize-import": "^1.2.1",
+    "tsc": "^2.0.4"
   },
   "scripts": {
     "tsc": "tsc"
