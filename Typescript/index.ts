@@ -171,7 +171,26 @@ app.put('/users/:id', async (req: Request, res: Response) => {
       res.status(500).send({ message: error.message });
     }
   });
-
+// Define the API endpoints
+app.delete('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    try {
+      // Delete the user details
+      await UserDetail.destroy({ where: { id: id } });
+  
+      // Delete the user
+      await user.destroy();
+  
+      res.json({ message: 'User deleted' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
 // Start the server
 app.listen(3000, () => {
     console.log("Server listening on port 3000");
