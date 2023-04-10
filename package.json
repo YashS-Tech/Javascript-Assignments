@@ -13,7 +13,7 @@
   },
   
   "scripts": {
-    "start": "node Typescript/index.ts",
+    "start": "ts node Typescript/index.ts",
     "build": "tsc",
     "tsc": "tsc"
   },
