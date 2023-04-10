@@ -11,8 +11,9 @@
     "sequelize-import": "^1.2.1",
     "tsc": "^2.0.4"
   },
+  
   "scripts": {
-    "start": "node index.ts",
+    "start": "node Typescript/index.ts",
     "build": "tsc",
     "tsc": "tsc"
   },
