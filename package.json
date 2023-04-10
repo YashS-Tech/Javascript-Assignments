@@ -11,10 +11,20 @@
     "sequelize-import": "^1.2.1",
     "tsc": "^2.0.4"
   },
+
+  "name": "my-project",
+  "version": "1.0.0",
   "scripts": {
-    "tsc": "tsc"
+    "start": "node index.js",
+    "tsc": "tsc",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/express": "^4.17.17"
   }
+ 
 }
+
+
+ 
+
