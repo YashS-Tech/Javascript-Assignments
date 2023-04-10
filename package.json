@@ -12,7 +12,7 @@
     "tsc": "^2.0.4"
   },
   "scripts": {
-    "start": "node Typescript/index.js",
+    "start": "node dist/index.js",
     "build": "tsc",
     "tsc": "tsc"
   },
