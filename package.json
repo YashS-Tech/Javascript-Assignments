@@ -12,6 +12,8 @@
     "tsc": "^2.0.4"
   },
   "scripts": {
+    "start": "node index.js",
+    "build": "tsc",
     "tsc": "tsc"
   },
   "devDependencies": {
