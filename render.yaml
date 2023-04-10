@@ -1,0 +1,8 @@
+env:
+  NODE_ENV: production
+services:
+  - name: web
+    buildCommand: npm run build
+    startCommand: npm start
+    env:
+      PORT: 8080
