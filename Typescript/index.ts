@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 
 import { User, UserDetail} from './model';
 // Initialize Express app
-const app = express();
+export const app = express();
 //app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -87,4 +87,7 @@ app.delete('/users/:id', async (req, res) => {
 // Start the server
 app.listen(3000, () => {
     console.log("Server listening on port 3000");
-  });
+
+    });
+   
+

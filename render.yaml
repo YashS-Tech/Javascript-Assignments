@@ -1,8 +1,0 @@
-services:
-  - name: web
-    type: web
-    buildCommand: npm install && npm run build
-    startCommand: npm start
-    env:
-      NODE_ENV: production
-      PORT: 8080
